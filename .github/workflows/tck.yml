@@ -28,6 +28,11 @@ jobs:
         mvn -N install
         cd expression
         mvn -B verify
+    - name: Test Summary
+      uses: test-summary/action@v2
+      with:
+        paths: "expression/target/failsafe-reports/*IT.xml"
+      if: always()        
   pages:
     runs-on: ${{ matrix.os }}
     strategy:
